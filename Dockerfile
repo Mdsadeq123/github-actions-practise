@@ -1,7 +1,10 @@
-FROM python:3.12-slim
+FROM node:24-slim
 
 WORKDIR /app
 
-COPY app.py .
+COPY package*.json ./
+RUN npm ci
 
-CMD ["python", "app.py"]
+COPY . .
+
+CMD ["node", "index.js"]
